@@ -44,6 +44,11 @@ app.use(
 app.use('/users',userRoutes);
 app.use('/boards',boardRoutes);
 app.use('/tasks',taskRoutes);
+app.get('/',async (req,res) => {
+  res.status(200).send({
+    message : "Welcome to HorseTail Bakcend Task"
+  })
+})
 
 app.listen(port,() => {
     console.log(`Server Up and Running on ${port}`)
