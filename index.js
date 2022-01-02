@@ -6,10 +6,13 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
+const multer = require('multer');
+const uploadPath  = multer({dest:'./Uploads'})
 
 const userRoutes = require('./app/routes/userRoutes');
 const boardRoutes = require('./app/routes/boardRoutes');
 const taskRoutes = require('./app/routes/taskRoutes');
+const fileUpload = require('./app/controllers/storingFile/uploadFile');
 
 dotenv.config();
 const config = process.env;
@@ -44,6 +47,7 @@ app.use(
 app.use('/users',userRoutes);
 app.use('/boards',boardRoutes);
 app.use('/tasks',taskRoutes);
+app.post('/file',uploadPath.single('uFile'), fileUpload);
 app.get('/',async (req,res) => {
   res.status(200).send({
     message : "Welcome to HorseTail Bakcend Task"
