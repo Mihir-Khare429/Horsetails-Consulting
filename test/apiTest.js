@@ -1,17 +1,16 @@
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-var should = chai.should();
+const chai = require('chai'); 
+const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
-let server = require('../index');
+const server = require('../index');
 
-describe('Test',() => {
+describe('Test', () => {
     it('it should check the status of server',(done) => {
         chai.request(server)
         .get('/')
-        .end((err,res) => {
-            (res).should.have.status(200);
-            (res.body).should.be.a('object');
-            done();
+        .end((err, res) => {
+        (res).should.have.status(200);
+        (res.body).should.be.a('object');
+        done();
         })
     })
 })
